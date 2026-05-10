@@ -1,0 +1,9 @@
+{
+    "httpMethod": "POST",
+    "path": "/admission",
+    "body": "MSH|^~\\&|LAB|HOSPITAL|ADT|1|20260509||ADT^A01|123|P|2.3\rPID|1||10000^^^MRN||DOE^JOHN||19800101|M",
+    "requestContext": {
+        "resourcePath": "/admission",
+        "httpMethod": "POST"
+    }
+}

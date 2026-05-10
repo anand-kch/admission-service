@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admission-service
+spec:
+  replicas: 2 # Running two instances for high availability
+  selector:
+    matchLabels:
+      app: admission
+  template:
+    metadata:
+      labels:
+        app: admission
+    spec:
+      containers:
+      - name: admission-container
+        image: admission-service:v1
+        imagePullPolicy: Never # Uses the local image we just built
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admission-entrypoint
+spec:
+  selector:
+    app: admission
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: NodePort # Allows access from the local machine

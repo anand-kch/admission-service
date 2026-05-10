@@ -1,0 +1,4 @@
+fastapi
+uvicorn
+hl7
+boto3
