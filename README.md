@@ -25,17 +25,20 @@ A microservice dedicated to handling patient registration and admissions using H
 1. Install dependencies: `pip install -r requirements.txt`
 2. Test HL7 parsing: `python src/lambda_function.py` (with local event mock)
 
-healthcheck/admission-service/
+### Project Structure
+
+```text
+healthcheck-admission-service/
 ├── src/
-│   ├── main.py                 # FastAPI Adapter
-│   ├── lambda_function.py      # Finalized CRUD logic for Admissions
-│   └── encoders.py             # Custom DecimalEncoder for JSON
+│   ├── main.py                # FastAPI Wrapper (Adapter)
+│   ├── lambda_function.py     # Core HL7 ADT Logic
+│   └── encoders.py            # JSON Decimal handling
 ├── tests/
 │   ├── mock_events/
-│   │   └── adt_event.json      # Mock API Gateway event with HL7 ADT body
-│   └── test_parser.py          # Unit tests for PID segment extraction
-├── requirements.txt            # Dependencies: python-hl7, boto3
-├── Dockerfile                  # Containerization for Kubernetes deployment
-├── .gitignore                  # Prevents __pycache__ and local env files
-└── README.md                   # Documentation for the Admission Service
-└── admisson-deployment.yaml    # K8s Manifest
+│   │   └── adt_event.json     # Mock API Gateway event
+│   └── test_parser.py         # HL7 Unit Tests
+├── requirements.txt           # Dependencies (hl7, fastapi, etc.)
+├── Dockerfile                 # Container configuration
+├── .gitignore                 # Standard Python exclusions
+├── admission-deployment.yaml  # Kubernetes Manifest
+└── README.md                  # This file
